@@ -1,0 +1,5 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://saipavankumargunda:Sush.316@pavan.fge57lo.mongodb.net/
+      database: Pavan
