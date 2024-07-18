@@ -24,20 +24,20 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @PostMapping("/add-employee")
-    public Employee createEmployee(@RequestBody Employee employee){
+    public Employee createEmployee(@RequestBody Employee employee) {
         return employeeService.addEmployee(employee);
     }
 
     @GetMapping("/list")
-    public List<Employee> getAllEmployees(){
+    public List<Employee> getAllEmployees() {
         return employeeService.findAllEmployees();
     }
 
     @GetMapping("/get-employee/{name}")
-    public Employee createEmployee(@PathVariable("name") String name){
+    public Employee createEmployee(@PathVariable("name") String name) {
         Employee e = employeeService.findEmployeeByEmployeeName(name);
-        if(Objects.equals(e.getEmployeeName(), name)){
-            System.out.println("record found"+ e.getEmployeeName());
+        if (Objects.equals(e.getEmployeeName(), name)) {
+            System.out.println("record found" + e.getEmployeeName());
         }
         return e;
     }
@@ -45,7 +45,7 @@ public class EmployeeController {
     @PatchMapping("/update-employee")
     public Employee updateEmployee(@RequestBody Employee employee) {
         Employee e = employeeService.findEmployeeByEmployeeName(employee.getEmployeeName());
-        if(e != null) {
+        if (e != null) {
             employee.setEmployeeId(e.getEmployeeId());
             return employeeService.updateEmployee(employee);
         } else {
@@ -55,10 +55,10 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/delete-employee/{name}")
-    public Boolean deleteEmployee(@PathVariable("name") String name){
-       System.out.println("employeeName: "+name);
+    public Boolean deleteEmployee(@PathVariable("name") String name) {
+        System.out.println("employeeName: " + name);
         Employee e = employeeService.findEmployeeByEmployeeName(name);
-        if(e != null) {
+        if (e != null) {
             Boolean b = employeeService.deleteEmployee(name);
             return b;
         } else {
@@ -67,8 +67,14 @@ public class EmployeeController {
     }
 
     @PostMapping("/get-employees-by-salary")
-    public List<Employee> getEmployeeBySalary(@RequestBody EmpSalaryDto empSalaryDto){
+    public List<Employee> getEmployeeBySalary(@RequestBody EmpSalaryDto empSalaryDto) {
         return employeeService.getEmployeesBySalary(empSalaryDto.getSalary());
+    }
+
+    @GetMapping("/fetch-employees/{salary}/{rating}")
+    public List<Employee> searchEmployee(@PathVariable("salary") float salary, @PathVariable("rating") int rating) {
+        List<Employee> e = employeeService.fetchEmployees(salary, rating);
+        return e;
     }
 
 }

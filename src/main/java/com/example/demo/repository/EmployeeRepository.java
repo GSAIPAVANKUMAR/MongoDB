@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
 
-public interface EmployeeRepository extends MongoRepository<Employee,String> {
+public interface EmployeeRepository extends MongoRepository<Employee, String> {
 
     Employee findByEmployeeName(String employeeName);
 
@@ -16,4 +16,7 @@ public interface EmployeeRepository extends MongoRepository<Employee,String> {
 
     @Query("{salary: {$gt:?0}}")
     List<Employee> getEmployees(float salary);
+
+    @Query("{ $and: [ { salary: { $gte: ?0 } }, { rating: { $gte: ?1 } } ] }")
+    List<Employee> fetchEmployees(float salary, int rating);
 }

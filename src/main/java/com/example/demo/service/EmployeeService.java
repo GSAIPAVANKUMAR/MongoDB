@@ -41,4 +41,8 @@ public class EmployeeService {
     public List<Employee> getEmployeesBySalary(float salary){
         return repo.getEmployees(salary);
     }
+
+    public List<Employee> fetchEmployees(float salary,int rating){
+        return repo.fetchEmployees(salary,rating);
+    }
 }

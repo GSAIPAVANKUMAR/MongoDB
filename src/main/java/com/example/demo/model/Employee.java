@@ -17,7 +17,15 @@ public class Employee
     private String employeeName ;
     private float salary;
     private int age;
+    private int rating;
 
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public int getRating() {
+        return rating;
+    }
 
     public int getAge() {
         return age;
