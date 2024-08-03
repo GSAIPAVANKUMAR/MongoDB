@@ -71,6 +71,7 @@ public class EmployeeController {
         return employeeService.getEmployeesBySalary(empSalaryDto.getSalary());
     }
 
+
     @GetMapping("/fetch-employees/{salary}/{rating}")
     public List<Employee> searchEmployee(@PathVariable("salary") float salary, @PathVariable("rating") int rating) {
         List<Employee> e = employeeService.fetchEmployees(salary, rating);
