@@ -1,6 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.AverageSalary;
+import com.example.demo.dto.AvgDto;
 import com.example.demo.dto.EmpSalaryDto;
+import com.example.demo.dto.NumberEmployees;
 import com.example.demo.model.Employee;
 import com.example.demo.service.EmployeeService;
 import org.apache.logging.log4j.Logger;
@@ -76,6 +79,19 @@ public class EmployeeController {
     public List<Employee> searchEmployee(@PathVariable("salary") float salary, @PathVariable("rating") int rating) {
         List<Employee> e = employeeService.fetchEmployees(salary, rating);
         return e;
+    }
+
+    @PostMapping("/get-avg-salary")
+    public List<AverageSalary> getAverageSalary(@RequestBody AvgDto avgDto) {
+        List<AverageSalary> avgSalary = employeeService.getAverageSalary(avgDto.getRating());
+        return avgSalary;
+    }
+
+    @GetMapping("/get-number-of-employees-by-rating")
+    public List<NumberEmployees> getTotalEmployees() {
+
+        List<NumberEmployees> ne = employeeService.getRatingNumber();
+        return ne;
     }
 
 }

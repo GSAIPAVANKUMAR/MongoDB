@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.AverageSalary;
+import com.example.demo.dto.NumberEmployees;
 import com.example.demo.model.Employee;
 import com.example.demo.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +46,13 @@ public class EmployeeService {
 
     public List<Employee> fetchEmployees(float salary,int rating){
         return repo.fetchEmployees(salary,rating);
+    }
+
+    public List<AverageSalary> getAverageSalary(int rating) {
+        return repo.getAvgSalary(rating);
+    }
+
+    public List<NumberEmployees> getRatingNumber() {
+        return repo.getRatingNumber();
     }
 }

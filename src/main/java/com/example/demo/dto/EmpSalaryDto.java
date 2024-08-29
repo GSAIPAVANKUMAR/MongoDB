@@ -4,8 +4,6 @@ public class EmpSalaryDto {
 
     float salary;
 
-
-
     public float getSalary() {
         return salary;
     }
